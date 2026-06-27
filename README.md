@@ -1,6 +1,6 @@
-# n8n on Render
+# n8n on Render (Docker)
 
-n8n workflow automation deployed on Render.
+n8n workflow automation deployed on Render using the official n8n Docker image.
 
 ## Setup
 
@@ -21,12 +21,6 @@ In your n8n Web Service dashboard, go to **Environment** and add:
 | Variable | Value |
 |---|---|
 | `DB_TYPE` | `postgresdb` |
-| `DATABASE_URL` | *(paste Internal Database URL from Postgres)* |
-
-Or individually set:
-| Variable | Value |
-|---|---|
-| `DB_TYPE` | `postgresdb` |
 | `DB_POSTGRESDB_DATABASE` | *(from Postgres)* |
 | `DB_POSTGRESDB_HOST` | *(from Postgres)* |
 | `DB_POSTGRESDB_PORT` | `5432` |
@@ -44,39 +38,23 @@ Existing env vars to keep:
 | `N8N_ENCRYPTION_KEY` | `9d00a75e699d6aee1aaff19a1389d65c` |
 | `WEBHOOK_URL` | `https://n8n-3f4f.onrender.com` |
 | `TZ` | `Asia/Dhaka` |
+| `N8N_RUNNERS_ENABLED` | `false` |
+| `N8N_DISABLE_POSTHOG` | `true` |
 
-### 3. Fixing env vars
+**DO NOT set `N8N_PORT`** — n8n uses port 5678 (already EXPOSEd in Dockerfile).
 
-**DO NOT set `N8N_PORT`.** Let n8n use its default port (5678). Render will auto-detect it.
+### 3. Switch Render to Docker runtime
 
-Add these to your Render dashboard:
-
-| Variable | Value | Why |
-|---|---|---|
-| `NODE_OPTIONS` | `--max-old-space-size=384` | Prevents heap OOM on Render's 512MB free tier |
-| `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS` | `true` | Fixes config permissions warning |
-| `N8N_RUNNERS_ENABLED` | `false` | Internal task runner fails with 403 on this setup |
-| `N8N_DISABLE_POSTHOG` | `true` | Stops PostHog 401 errors (no API key set) |
+1. Go to your n8n Web Service in Render dashboard
+2. Go to **Settings**
+3. Under **Runtime**, select **Docker**
+4. Click **Save**
 
 ### 4. Deploy
 
 1. Go to your n8n Web Service
 2. **Manual Deploy > Clear build cache & deploy**
 
-## Troubleshooting
-
-**Q: Server keeps restarting / JavaScript heap out of memory**
-A: Render free tier has 512MB RAM. Set `NODE_OPTIONS=--max-old-space-size=384` to limit Node heap.
-
-**Q: "Invalid number value for N8N_PORT" error**
-A: Remove the `N8N_PORT` env var entirely. n8n will use its default port 5678.
-
-**Q: "Task runner connection attempt failed with status code 403"**
-A: Set `N8N_RUNNERS_ENABLED=false`. Internal task runner can't authenticate on free Render.
-
-**Q: PostHog 401 errors in logs**
-A: Set `N8N_DISABLE_POSTHOG=true` (non-critical, just noise).
-
 ## Updating
 
-Update the `n8n` version in `package.json` and push to GitHub. Render auto-deploys.
+Update the version tag in `Dockerfile` and push to GitHub. Render auto-deploys.
