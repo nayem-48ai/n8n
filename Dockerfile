@@ -1,4 +1,4 @@
-FROM n8nio/n8n:1.123.61
+FROM n8nio/n8n:2.27.4
 
 WORKDIR /home/node
 
