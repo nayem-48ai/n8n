@@ -34,9 +34,9 @@ Existing env vars to keep:
 |---|---|
 | `N8N_LISTEN_ADDRESS` | `0.0.0.0` |
 | `N8N_PROTOCOL` | `https` |
-| `N8N_HOST` | `n8n-3f4f.onrender.com` |
+| `N8N_HOST` | `yourrepo.onrender.com` </br>#Without `https` `receive after deployment` |
 | `N8N_ENCRYPTION_KEY` | `9d00a75e699d6aee1aaff19a1389d65c` |
-| `WEBHOOK_URL` | `https://n8n-3f4f.onrender.com` |
+| `WEBHOOK_URL` | `https://yourrepo.onrender.com` </br>#Your render url with `https` `receive after first deploy` |
 | `TZ` | `Asia/Dhaka` |
 | `N8N_RUNNERS_ENABLED` | `false` |
 | `N8N_DISABLE_POSTHOG` | `true` |
