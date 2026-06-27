@@ -1,7 +1,15 @@
 {
   "name": "n8n-render",
   "version": "1.0.0",
-  "description": "n8n workflow automation deployed on Render (Docker)",
+  "description": "n8n workflow automation deployed on Render",
   "main": "index.js",
-  "private": true
+  "scripts": {
+    "start": "n8n start"
+  },
+  "dependencies": {
+    "n8n": "^1.123.61"
+  },
+  "engines": {
+    "node": "20.x"
+  }
 }

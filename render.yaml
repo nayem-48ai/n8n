@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: n8n
+    runtime: docker
+    repo: https://github.com/nayem-48ai/n8n
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: N8N_USER_FOLDER
+        value: /home/node/.n8n
