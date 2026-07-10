@@ -4,8 +4,11 @@ WORKDIR /home/node
 
 ENV N8N_USER_FOLDER=/home/node/.n8n
 
-COPY proxy.js start.sh /home/node/
+COPY --chown=node:node proxy.js start.sh /home/node/
+
+RUN chmod +x /home/node/start.sh /home/node/proxy.js
 
 EXPOSE 5678
 
+ENTRYPOINT []
 CMD ["/home/node/start.sh"]
