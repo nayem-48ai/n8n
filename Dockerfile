@@ -14,6 +14,11 @@ ENV DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
 
 ENV NODE_OPTIONS="--dns-result-order=ipv4first"
 
+ENV N8N_HOST=n8n-3f4f.onrender.com
+ENV N8N_PROTOCOL=https
+ENV WEBHOOK_URL=https://n8n-3f4f.onrender.com/
+ENV N8N_EDITOR_BASE_URL=https://n8n-3f4f.onrender.com
+
 EXPOSE 5678
 
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
