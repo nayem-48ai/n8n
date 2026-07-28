@@ -4,26 +4,22 @@ WORKDIR /home/node
 
 ENV N8N_USER_FOLDER=/home/node/.n8n
 
+ENV DB_TYPE=postgresdb
+ENV DB_POSTGRESDB_HOST=ep-twilight-forest-aojc4ipo.c-2.ap-southeast-1.aws.neon.tech
+ENV DB_POSTGRESDB_PORT=5432
+ENV DB_POSTGRESDB_DATABASE=neondb
+ENV DB_POSTGRESDB_USER=neondb_owner
+ENV DB_POSTGRESDB_PASSWORD=npg_MDLebgSJ2k6x
+ENV DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
+
+ENV NODE_OPTIONS="--max-old-space-size=384 --dns-result-order=ipv4first"
+
 ENV N8N_HOST=n8n-3f4f.onrender.com
 ENV N8N_PROTOCOL=https
 ENV WEBHOOK_URL=https://n8n-3f4f.onrender.com/
 ENV N8N_EDITOR_BASE_URL=https://n8n-3f4f.onrender.com
 
-ENV EXECUTIONS_DATA_PRUNE=true
-ENV EXECUTIONS_DATA_MAX_AGE=24
-ENV EXECUTIONS_DATA_SAVE_ON_ERROR=none
-ENV EXECUTIONS_DATA_SAVE_ON_SUCCESS=none
-ENV EXECUTIONS_DATA_SAVE_ON_MANUAL=true
-ENV N8N_DISABLE_POSTHOG=true
-ENV N8N_RUNNERS_ENABLED=false
-ENV N8N_EMAIL_MODE=disabled
-ENV N8N_PUSH_BACKEND=sse
-ENV N8N_METRICS=false
-ENV N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN=true
-
-ENV NODE_OPTIONS="--max-old-space-size=256 --dns-result-order=ipv4first --gc-interval=100"
-
 EXPOSE 5678
 
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
-CMD ["web"]
+CMD ["start"]
