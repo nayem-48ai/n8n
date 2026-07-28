@@ -10,13 +10,20 @@ ENV WEBHOOK_URL=https://n8n-3f4f.onrender.com/
 ENV N8N_EDITOR_BASE_URL=https://n8n-3f4f.onrender.com
 
 ENV EXECUTIONS_DATA_PRUNE=true
-ENV EXECUTIONS_DATA_MAX_AGE=168
+ENV EXECUTIONS_DATA_MAX_AGE=24
+ENV EXECUTIONS_DATA_SAVE_ON_ERROR=none
+ENV EXECUTIONS_DATA_SAVE_ON_SUCCESS=none
+ENV EXECUTIONS_DATA_SAVE_ON_MANUAL=true
 ENV N8N_DISABLE_POSTHOG=true
 ENV N8N_RUNNERS_ENABLED=false
+ENV N8N_EMAIL_MODE=disabled
+ENV N8N_PUSH_BACKEND=sse
+ENV N8N_METRICS=false
+ENV N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN=true
 
-ENV NODE_OPTIONS="--max-old-space-size=384 --dns-result-order=ipv4first"
+ENV NODE_OPTIONS="--max-old-space-size=256 --dns-result-order=ipv4first --gc-interval=100"
 
 EXPOSE 5678
 
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
-CMD ["start"]
+CMD ["web"]
