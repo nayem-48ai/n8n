@@ -5,7 +5,7 @@ WORKDIR /home/node
 ENV N8N_USER_FOLDER=/home/node/.n8n
 
 ENV DB_TYPE=postgresdb
-ENV DB_POSTGRESDB_HOST=ep-twilight-forest-aojc4ipo.c-2.ap-southeast-1.aws.neon.tech
+ENV DB_POSTGRESDB_HOST=ep-rapid-sun-aox9hf4d-pooler.c-2.ap-southeast-1.aws.neon.tech
 ENV DB_POSTGRESDB_PORT=5432
 ENV DB_POSTGRESDB_DATABASE=neondb
 ENV DB_POSTGRESDB_USER=neondb_owner
